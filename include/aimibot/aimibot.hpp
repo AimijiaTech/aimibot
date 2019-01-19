@@ -96,14 +96,6 @@ double getAngularVelocity()
   // raw data angles are in hundredths of a degree, convert to radians.
   return (static_cast<double>(iner_data.angle_rate) / 100.0) * pi / 180.0;
 }
-void publish_odom(ros::NodeHandle& nh_)
-{
-
-
-
-}
-
-
 
 void rostopic_pub(CoreSensors_data coresensors_data_,
 		  Ultrasonic ultrasonic_data_,

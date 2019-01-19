@@ -8,6 +8,7 @@
 #include <signal.h> 
 
 serial::Serial sp;
+bool first_read=false;
 const double digit_to_dps = 0.00875;
 bool isconnect(false);
 
@@ -171,7 +172,10 @@ bool findpack_update(const unsigned char * incoming, unsigned int numberOfIncomi
       }
       else  { 
 	found_packet=true; 
+// 	if(!first_read){
+// 	first_read = true ;
 	ROS_INFO("A FULL PACK READ FINISHED!!");
+// 	}
       }
       cs=0;
       findheader0=findheader1=false;
@@ -285,7 +289,7 @@ int main(int argc, char** argv)
          joint_states.velocity.resize(2,0.0);
          joint_states.effort.resize(2,0.0);
          gethand = getHeading();
-	 
+
 	 diff_drive.update(coresensors_data.time_stamp, coresensors_data.left_encoder, coresensors_data.right_encoder,
                                      pose_update, pose_update_rates);
          diff_drive.getWheelJointStates(joint_states.position[0], joint_states.velocity[0],
