@@ -3,7 +3,7 @@
 #include "../include/aimibot/message_callback.hpp"
 #include "serial/serial.h"
 #include "limits.h"
-const double bias=0.23;
+const double bias=0.365;
 const double epsilon = 0.0001;
 const int16_t speed_limited=2500;
 uint8_t buffer_send[256];
