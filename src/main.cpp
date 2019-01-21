@@ -288,13 +288,12 @@ int main(int argc, char** argv)
 	 joint_states.position.resize(2,0.0);
          joint_states.velocity.resize(2,0.0);
          joint_states.effort.resize(2,0.0);
-         gethand = getHeading();
 
 	 diff_drive.update(coresensors_data.time_stamp, coresensors_data.left_encoder, coresensors_data.right_encoder,
                                      pose_update, pose_update_rates);
          diff_drive.getWheelJointStates(joint_states.position[0], joint_states.velocity[0],
 				    joint_states.position[1], joint_states.velocity[1]);
-         odometry.update(pose_update,pose_update_rates,gethand,getAngularVelocity());
+         odometry.update(pose_update,pose_update_rates,getHeading(),getAngularVelocity());
       if(ros::ok())
        {
         joint_states.header.stamp = ros::Time::now();
