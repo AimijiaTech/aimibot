@@ -52,7 +52,7 @@ void DiffDriver::update(const uint16_t &time_stamp,
     last_tick_left = curr_tick_left;
     init_l = true;
   }
-  left_diff_ticks = (double)(short)((curr_tick_left - last_tick_left) & 0xffff);
+  left_diff_ticks = (double)(short)((last_tick_left - curr_tick_left) & 0xffff);
   last_tick_left = curr_tick_left;
   last_rad_left += tick_to_rad * left_diff_ticks;
 
@@ -62,7 +62,7 @@ void DiffDriver::update(const uint16_t &time_stamp,
     last_tick_right = curr_tick_right;
     init_r = true;
   }
-  right_diff_ticks = (double)(short)((curr_tick_right - last_tick_right) & 0xffff);
+  right_diff_ticks = (double)(short)((last_tick_right- curr_tick_right ) & 0xffff);
   last_tick_right = curr_tick_right;
   last_rad_right += tick_to_rad * right_diff_ticks;
 
