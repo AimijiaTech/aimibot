@@ -6,6 +6,7 @@
 const double bias=0.365;
 const double epsilon = 0.0001;
 const int16_t speed_limited=2500;
+const int16_t min_speed_limited=220;
 uint8_t buffer_send[256];
 uint8_t i;
 uint8_t cs;
@@ -56,6 +57,14 @@ void subscribeVelocityCommand(const geometry_msgs::TwistConstPtr msg)
  {
   send_speed= send_speed/abs(send_speed)*speed_limited;
 //   ROS_INFO("SEND_SPEED IS OUT OF RANGE!!");
+ }
+ if(send_radius==1)
+ {
+    if(abs(send_speed)<min_speed_limited)  
+    {
+      if((send_speed>-min_speed_limited)&&(send_speed<=0))  send_speed=-min_speed_limited;
+      else if((send_speed<min_speed_limited)&&(send_speed>0))  send_speed=min_speed_limited;
+    }
  }
   buffer_send[0]=header0; buffer_send[1]=header1;
   buffer_send[2]=0x06;    

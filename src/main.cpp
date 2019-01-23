@@ -151,7 +151,7 @@ bool findpack_update(const unsigned char * incoming, unsigned int numberOfIncomi
 	  ultrasonic_data.DISL5=  (incoming[offset+11]<<8)|incoming[offset+10] ;
 	  break;
 	default:
-	  ROS_INFO("CAN NOT FOUND DATA_ID: %d",incoming[offset]);
+// 	  ROS_INFO("CAN NOT FOUND DATA_ID: %d",incoming[offset]);
 	  subpay_size=payload_size-offset-2;
 	  break;
        }
@@ -164,7 +164,7 @@ bool findpack_update(const unsigned char * incoming, unsigned int numberOfIncomi
       break;
     case(waitingForCheckSum):
       checksum=incoming[0];
-     ROS_INFO("checksum: %02x cal_cs: %02x",checksum,cs);
+//      ROS_INFO("checksum: %02x cal_cs: %02x",checksum,cs);
       if(checksum!=cs) {
         ROS_INFO("PACK FOUND ERR");
         found_packet=false;
@@ -174,15 +174,15 @@ bool findpack_update(const unsigned char * incoming, unsigned int numberOfIncomi
 	found_packet=true; 
 // 	if(!first_read){
 // 	first_read = true ;
-	ROS_INFO("A FULL PACK READ FINISHED!!");
+// 	ROS_INFO("A FULL PACK READ FINISHED!!");
 // 	}
       }
       cs=0;
       findheader0=findheader1=false;
       state=waitingForHead;
       isconnect=true;
-      std::cout<< std::endl;
-      std::cout<< std::endl;
+//       std::cout<< std::endl;
+//       std::cout<< std::endl;
       break;
     default: 
       break;
